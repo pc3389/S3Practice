@@ -1,0 +1,16 @@
+{
+  "auth": {
+    "s3practicec5fbd6c5": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  },
+  "storage": {
+    "S3practiceName": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
+  }
+}
