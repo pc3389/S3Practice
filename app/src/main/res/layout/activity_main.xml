@@ -105,4 +105,13 @@
         app:layout_constraintStart_toEndOf="@+id/button2"
         tools:layout_editor_absoluteY="72dp" />
 
+    <Button
+        android:id="@+id/button_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:text="to Data"
+        app:layout_constraintEnd_toStartOf="@+id/checkbutton"
+        app:layout_constraintTop_toTopOf="@+id/checkbutton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

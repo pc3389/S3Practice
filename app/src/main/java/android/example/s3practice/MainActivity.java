@@ -2,6 +2,7 @@ package android.example.s3practice;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         Button signInButton;
         Button checkButton;
         Button credButton;
+        Button dataButton;
 
         emailEditText = findViewById(R.id.editTextEmailAddress);
         passwordEditText = findViewById(R.id.editTextPassword);
@@ -66,12 +68,20 @@ public class MainActivity extends AppCompatActivity {
         signInButton = findViewById(R.id.signinbutton);
         checkButton = findViewById(R.id.checkbutton);
         credButton = findViewById(R.id.credButton);
+        dataButton = findViewById(R.id.button_data);
 
         Amplify.Auth.fetchAuthSession(
                 result -> Log.i("MyAmplifyApp", result.toString()),
                 error -> Log.e("MyAmplifyApp", error.toString())
         );
 
+        dataButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, DataActivity.class);
+                startActivity(intent);
+            }
+        });
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -217,10 +227,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void listFile() {
         StorageListOptions options = StorageListOptions.builder()
-                .accessLevel(StorageAccessLevel.PUBLIC)
+                .accessLevel(StorageAccessLevel.PRIVATE)
                 .build();
         Amplify.Storage.list(
                 "",
+                options,
                 result -> {
                     for (StorageItem item : result.getItems()) {
                         Log.i("MyAmplifyApp", "Item: " + item.getKey());
